@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { NavLink, Link } from 'react-router-dom'
+
 const TopMenu = () => {
   return (
         <div className="topmenu">
@@ -28,10 +30,10 @@ const TopMenu = () => {
             </div>
             <div className="main-menu">
                 <nav>
-                    <a className="active" href="index.html">Home</a>
+                    <NavLink to="/">Home</NavLink>
                     <a href="services.html">Service</a>
                     <a href="news.html">News</a>
-                    <a href="contact.html">Contact</a>
+                    <NavLink to="/Contacts">Contact</NavLink>
                 </nav>
                 <a className="btn-yellow" href="login.html">Login <i className="fa-solid fa-arrow-right-long"></i></a>
 
