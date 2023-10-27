@@ -1055,3 +1055,8 @@ footer .footerborder {
 .contactmap iframe {
   width: 100%;
 }
+
+span {
+  color: #ac0000;
+  padding: 20px;
+}

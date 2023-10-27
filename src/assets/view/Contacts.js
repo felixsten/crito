@@ -7,6 +7,7 @@ import Contactcards from '../../components/Contactcards';
 import Contactform from '../../components/Contactform';
 import Maplocation from '../../components/Maplocation';
 
+
 const Contacts = () => {
   return (
     <div className="wrapper">
@@ -19,5 +20,7 @@ const Contacts = () => {
     </div>
   )
 }
+
+
 
 export default Contacts
