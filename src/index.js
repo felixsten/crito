@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Contacts from './assets/view/Contacts';
+import Contacts from './assets/page/Contacts';
 import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
