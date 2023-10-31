@@ -6,6 +6,7 @@ import React from 'react'
 
 
 const Contactform = () => {
+    
   return (
     <section className="contactform">
         <div className="container">
@@ -13,7 +14,7 @@ const Contactform = () => {
                 <h2>Leave us a message for any information.</h2>
             </div>
             <div className="contactmessage">
-                <form onSubmit={enterContact} method="post">
+                <form onSubmit={enterContact} method="post" action="#">
                     <div>
                         <input type="text" name="firstName" id="firstName" placeholder="Name*" />
                         <span id="errorName"></span>
@@ -23,7 +24,7 @@ const Contactform = () => {
                         <span id="errorEmail"></span>
                     </div>
                     <div>
-                        <textarea name="message" id="message" cols="80" rows="5" placeholder="Your Message*"></textarea>
+                        <textarea type="text" name="message" id="message" cols="80" rows="5" placeholder="Your Message*"></textarea>
                         <span id="errorMessage"></span>
                     </div>
                     <button type="submit" className="btn-yellow">Send Message <i className="fa-solid fa-arrow-right-long"></i></button>
@@ -31,19 +32,40 @@ const Contactform = () => {
             </div>
         </div>
     </section>
+    
   )
+  
 }
 
-function enterContact(e) {
-    e.preventDefault()
-    
-    const messageInfo = {
-        firstName: e.target[0].value,
-        email: e.target[1].value,
-        message: e.target[2].value,
-    }
-        
 
+
+function enterContact(event) {
+    console.log("hej")
+    event.preventDefault()
+   
+    
+    
+
+    const messageInfo = {
+        firstName: event.target[0].value,
+        email: event.target[1].value,
+        message: event.target[2].value,
+    }
+    
+    let errors = []
+
+    for (let i = 0; i < event.target.length; i++) {
+        if (event.target[i].required) {
+            errors.push(validate(event.target[i]))
+        }
+    }
+
+    if (errors.includes(false)) {
+        console.log("fel")
+
+    } else {
+
+    }
 
     if (checkName(messageInfo.firstName) === false) {
         document.querySelector('#errorName').innerHTML = "You have to write a valid name"
@@ -65,8 +87,32 @@ function enterContact(e) {
     else {
         document.querySelector('#errorMessage').innerHTML = ""
     }
+
+
+
+
 }
 
+
+function validate(element) {
+    let result = false
+
+    switch(element.type) {
+        case 'text':
+            result = checkName(element.firstName)
+            break;
+
+        case 'email':
+            result = checkEmail(element.email)
+            break;
+
+        case 'text':
+            result = checkMessage(element.message)
+            break;
+    }
+
+    return result
+}
  
 function checkName(firstName) {
     if (firstName === "") {
