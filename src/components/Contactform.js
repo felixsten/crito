@@ -20,7 +20,7 @@ const Contactform = () => {
                         <span id="errorName"></span>
                     </div>
                     <div>
-                        <input type="email" name="email" id="email" placeholder="Email*" />
+                        <input type="text" name="email" id="email" placeholder="Email*" />
                         <span id="errorEmail"></span>
                     </div>
                     <div>
@@ -40,16 +40,16 @@ const Contactform = () => {
 
 
 function enterContact(event) {
-    console.log("hej")
+    
     event.preventDefault()
-   
+    
     
     
 
     const messageInfo = {
         firstName: event.target[0].value,
         email: event.target[1].value,
-        message: event.target[2].value,
+        message: event.target[2].value
     }
     
     let errors = []
@@ -60,10 +60,32 @@ function enterContact(event) {
         }
     }
 
-    if (errors.includes(false)) {
-        console.log("fel")
+    if (!errors.includes(false)) {
+        
+        const json = JSON.stringify({
+            name: event.target['firstName'].value,
+            email: event.target['email'].value,
+            message: event.target['message'].value
+        })
 
-    } else {
+        
+
+       
+
+        fetch("https://win23-assignment.azurewebsites.net/api/contactform", {
+            method: "post",
+            headers: {
+                "accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: json
+            
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+
+        
 
     }
 
@@ -113,6 +135,9 @@ function validate(element) {
 
     return result
 }
+
+
+
  
 function checkName(firstName) {
     if (firstName === "") {
