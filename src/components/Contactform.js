@@ -28,6 +28,9 @@ const Contactform = () => {
                         <span id="errorMessage"></span>
                     </div>
                     <button type="submit" className="btn-yellow">Send Message <i className="fa-solid fa-arrow-right-long"></i></button>
+                    <div class="alert alert-success">
+                        <strong>Form has been sent</strong>
+                    </div>
                 </form>
             </div>
         </div>
@@ -81,7 +84,12 @@ function enterContact(event) {
             body: json
             
         })
-        .then(res => res.json())
+        .then(res => {
+            if (res.status === 200)
+                document.querySelector('.alert').style.display = "block";
+                return res.json()
+                
+        })
         .then(data => console.log(data))
 
 

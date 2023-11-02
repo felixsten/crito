@@ -1060,3 +1060,10 @@ span {
   color: #ac0000;
   padding: 20px;
 }
+
+.alert {
+  margin-top: 20px;
+  width: 500px;
+  position: absolute;
+  display: none;
+}
