@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 
@@ -6,7 +6,15 @@ import React from 'react'
 
 
 const Contactform = () => {
+
+    const [count, setCount] = useState(0)
     
+    const handleButtonClick = () => {
+        setCount(count + 1)
+
+        
+    }
+    console.log('Number of times form button pressed: ' + count)
   return (
     <section className="contactform">
         <div className="container">
@@ -27,8 +35,8 @@ const Contactform = () => {
                         <textarea type="text" name="message" id="message" cols="80" rows="5" placeholder="Your Message*"></textarea>
                         <span id="errorMessage"></span>
                     </div>
-                    <button type="submit" className="btn-yellow">Send Message <i className="fa-solid fa-arrow-right-long"></i></button>
-                    <div class="alert alert-success">
+                    <button onClick={handleButtonClick} type="submit" className="btn-yellow">Send Message <i className="fa-solid fa-arrow-right-long"></i></button>
+                    <div className="alert alert-success">
                         <strong>Form has been sent</strong>
                     </div>
                 </form>
@@ -46,8 +54,7 @@ function enterContact(event) {
     
     event.preventDefault()
     
-    
-    
+
 
     const messageInfo = {
         firstName: event.target[0].value,
