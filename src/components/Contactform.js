@@ -15,6 +15,20 @@ const Contactform = () => {
         
     }
     console.log('Number of times form button pressed: ' + count)
+
+    const [formInfo, setformInfo] = useState({
+        firstName: "",
+        email: "",
+        message: "",
+    })
+
+    const handleInfo = (event) => {
+        setformInfo({
+            ...formInfo,
+            [event.target.name]: event.target.value
+        })
+    }
+    console.log(formInfo)
   return (
     <section className="contactform">
         <div className="container">
@@ -24,15 +38,15 @@ const Contactform = () => {
             <div className="contactmessage">
                 <form onSubmit={enterContact} method="post" action="#">
                     <div>
-                        <input type="text" name="firstName" id="firstName" placeholder="Name*" />
+                        <input type="text" name="firstName" id="firstName" placeholder="Name*" value={formInfo.firstName} onChange={handleInfo}/>
                         <span id="errorName"></span>
                     </div>
                     <div>
-                        <input type="text" name="email" id="email" placeholder="Email*" />
+                        <input type="text" name="email" id="email" placeholder="Email*" value={formInfo.email} onChange={handleInfo}/>
                         <span id="errorEmail"></span>
                     </div>
                     <div>
-                        <textarea type="text" name="message" id="message" cols="80" rows="5" placeholder="Your Message*"></textarea>
+                        <textarea type="text" name="message" id="message" cols="80" rows="5" placeholder="Your Message*" value={formInfo.message} onChange={handleInfo}></textarea>
                         <span id="errorMessage"></span>
                     </div>
                     <button onClick={handleButtonClick} type="submit" className="btn-yellow">Send Message <i className="fa-solid fa-arrow-right-long"></i></button>
