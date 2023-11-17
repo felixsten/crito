@@ -17,7 +17,7 @@ const Contactform = () => {
     console.log('Number of times form button pressed: ' + count)
 
     const [formInfo, setformInfo] = useState({
-        firstName: "",
+        name: "",
         email: "",
         message: "",
     })
@@ -38,7 +38,7 @@ const Contactform = () => {
             <div className="contactmessage">
                 <form onSubmit={enterContact} method="post" action="#">
                     <div>
-                        <input type="text" name="firstName" id="firstName" placeholder="Name*" value={formInfo.firstName} onChange={handleInfo}/>
+                        <input type="text" name="name" id="name" placeholder="Name*" value={formInfo.name} onChange={handleInfo}/>
                         <span id="errorName"></span>
                     </div>
                     <div>
@@ -71,7 +71,7 @@ function enterContact(event) {
 
 
     const messageInfo = {
-        firstName: event.target[0].value,
+        name: event.target[0].value,
         email: event.target[1].value,
         message: event.target[2].value
     }
@@ -87,10 +87,11 @@ function enterContact(event) {
     if (!errors.includes(false)) {
         
         const json = JSON.stringify({
-            name: event.target['firstName'].value,
+            name: event.target['name'].value,
             email: event.target['email'].value,
             message: event.target['message'].value
         })
+        console.log(json)
 
         
 
@@ -118,8 +119,8 @@ function enterContact(event) {
 
     }
 
-    if (checkName(messageInfo.firstName) === false) {
-        document.querySelector('#errorName').innerHTML = "You have to write a valid name"
+    if (checkName(messageInfo.name) === false) {
+        document.querySelector('#errorName').innerHTML = "You have to write a name"
     }
     else {
         document.querySelector('#errorName').innerHTML = ""
@@ -150,7 +151,7 @@ function validate(element) {
 
     switch(element.type) {
         case 'text':
-            result = checkName(element.firstName)
+            result = checkName(element.name)
             break;
 
         case 'email':
@@ -168,16 +169,10 @@ function validate(element) {
 
 
  
-function checkName(firstName) {
-    if (firstName === "") {
+function checkName(name) {
+    if (name === "") {
         console.log("You must enter name")
         return false
-    }
-    else {
-        if (firstName.length < 2) {
-            console.log("You must enter valid name")
-            return false
-        }
     }
     return true
   
